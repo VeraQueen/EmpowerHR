@@ -11,11 +11,10 @@ import { EmployeesComponent } from './employees/employees.component';
 // exporting routes configuration
 export const routes: Routes = [
   // ROUTE TO:
-  // { path: '', redirectTo: '/employeeList', pathMatch: 'full' },
+  { path: '', redirectTo: '/employees', pathMatch: 'full' },
   {
-    path: '',
+    path: 'employees',
     component: EmployeesComponent,
-    pathMatch: 'full',
     children: [
       { path: '', component: EmployeeStartComponent },
       {
@@ -29,8 +28,8 @@ export const routes: Routes = [
     ],
   },
   // wild card option - goes to the list of employees
-  // {
-  //   path: '**',
-  //   redirectTo: '/employeeList',
-  // },
+  {
+    path: '**',
+    redirectTo: '/employees',
+  },
 ];

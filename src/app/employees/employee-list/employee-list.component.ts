@@ -1,5 +1,6 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-list',
@@ -10,5 +11,10 @@ import { Component } from '@angular/core';
 })
 export class EmployeeListComponent {
   employees: String[] = ['James Deen', 'Johnny Depp', 'Mark Cain'];
-  onSelectEmployee() {}
+
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+  onSelectEmployee() {
+    this.router.navigate(['employeeInfo'], { relativeTo: this.route });
+  }
 }
