@@ -1,1 +1,11 @@
-<p>employee-info works!</p>
+<div class="w-10 h-10">
+  <img
+    [src]="
+      employeeProfilePicUrl
+        ? employeeProfilePicUrl
+        : 'assets/employee-placeholder/uifaces-cartoon-image-female'
+    "
+    alt="Your profile picture"
+    class="w-full h-full rounded-sm object-cover object-center"
+  />
+</div>
