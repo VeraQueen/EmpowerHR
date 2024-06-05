@@ -9,24 +9,24 @@ import { Component } from '@angular/core';
 })
 export class EmployeeInfoComponent {
   employee = {
-    employeeProfilePicUrl: '',
-    name: 'alan',
+    employeeProfilePicUrl: undefined,
+    firstName: 'Alan',
     lastName: 'Brick',
     gender: 'male',
     birthYear: 1975,
     department: 'administration',
     contractType: 'temp',
     contractValidity: '3 mths',
-    startedWorking: new Date(2024, 5, 10),
+    startDate: new Date(2024, 5, 10),
   };
 
   employeeProfilePicUrl = this.employee.employeeProfilePicUrl;
-  name = this.employee.name;
+  firstName = this.employee.firstName;
   lastName = this.employee.lastName;
   gender = this.employee.gender;
   birthYear = this.employee.birthYear;
   department = this.employee.department;
   contractType = this.employee.contractType;
   contractValidity = this.employee.contractValidity;
-  startedWorking = this.employee.startedWorking;
+  startDate = this.employee.startDate;
 }

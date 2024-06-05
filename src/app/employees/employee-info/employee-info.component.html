@@ -1,11 +1,126 @@
-<div class="w-10 h-10">
-  <img
-    [src]="
-      employeeProfilePicUrl
-        ? employeeProfilePicUrl
-        : 'assets/employee-placeholder/uifaces-cartoon-image-female'
-    "
-    alt="Your profile picture"
-    class="w-full h-full rounded-sm object-cover object-center"
-  />
+<div class="max-w-full">
+  <div class="flex items-center justify-around gap-4 basis-1/3 pb-4">
+    <!-- PERSONAL EMPLOYEE PHOTO -->
+    <div class="w-44 h-44">
+      <img
+        [src]="
+          employeeProfilePicUrl !== undefined
+            ? employeeProfilePicUrl
+            : 'assets/employee-placeholder/uifaces-cartoon-image-male.jpg'
+        "
+        alt="Your profile picture"
+        class="w-full h-full rounded-sm object-cover object-center"
+      />
+    </div>
+
+    <!-- PERSONAL INFORMATION TABLE -->
+    <table class="border border-collapse border-slate-500 basis-2/3">
+      <caption class="pb-2 font-semibold uppercase">
+        Personal data:
+      </caption>
+      <tr>
+        <th
+          class="px-4 py-2 w-40 text-start text-sm font-medium text-gray-500 uppercase border border-slate-300"
+        >
+          First name:
+        </th>
+        <td
+          class="px-4 py-2 text-md font-medium text-gray-800 border border-slate-300"
+        >
+          {{ firstName }}
+        </td>
+      </tr>
+      <tr>
+        <th
+          class="px-4 py-2 text-start text-sm font-medium text-gray-500 uppercase border border-slate-300"
+        >
+          Last name:
+        </th>
+        <td
+          class="px-4 py-2 text-md font-medium text-gray-800 border border-slate-300"
+        >
+          {{ lastName }}
+        </td>
+      </tr>
+      <tr>
+        <th
+          class="px-4 py-2 text-start text-sm font-medium text-gray-500 uppercase border border-slate-300"
+        >
+          Gender:
+        </th>
+        <td
+          class="px-4 py-2 text-md font-medium text-gray-800 border border-slate-300"
+        >
+          {{ gender }}
+        </td>
+      </tr>
+      <tr>
+        <th
+          class="px-4 py-2 text-start text-sm font-medium text-gray-500 uppercase border border-slate-300"
+        >
+          Birth year:
+        </th>
+        <td
+          class="px-4 py-2 text-md font-medium text-gray-800 border border-slate-300"
+        >
+          {{ birthYear }}
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- PERSONAL INFORMATION TABLE -->
+  <table class="border border-collapse border-slate-500 w-full">
+    <caption class="pb-2 font-semibold uppercase">
+      Employee data:
+    </caption>
+    <tr>
+      <th
+        class="px-4 py-2 w-40 text-start text-sm font-medium text-gray-500 uppercase border border-slate-300"
+      >
+        Department:
+      </th>
+      <td
+        class="px-4 py-2 text-md font-medium text-gray-800 border border-slate-300"
+      >
+        {{ department }}
+      </td>
+    </tr>
+    <tr>
+      <th
+        class="px-4 py-2 text-start text-sm font-medium text-gray-500 uppercase border border-slate-300"
+      >
+        Contract type:
+      </th>
+      <td
+        class="px-4 py-2 text-md font-medium text-gray-800 border border-slate-300"
+      >
+        {{ contractType }}
+      </td>
+    </tr>
+    <tr>
+      <th
+        class="px-4 py-2 text-start text-sm font-medium text-gray-500 uppercase border border-slate-300"
+      >
+        Contract validity:
+      </th>
+      <td
+        class="px-4 py-2 text-md font-medium text-gray-800 border border-slate-300"
+      >
+        {{ contractValidity }}
+      </td>
+    </tr>
+    <tr>
+      <th
+        class="px-4 py-2 text-start text-sm font-medium text-gray-500 uppercase border border-slate-300"
+      >
+        Start date:
+      </th>
+      <td
+        class="px-4 py-2 text-md font-medium text-gray-800 border border-slate-300"
+      >
+        {{ startDate }}
+      </td>
+    </tr>
+  </table>
 </div>
