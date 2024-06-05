@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 
 @Component({
@@ -9,4 +9,9 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
   templateUrl: './employees.component.html',
   styleUrl: './employees.component.css',
 })
-export class EmployeesComponent {}
+export class EmployeesComponent {
+  constructor(private router: Router, private route: ActivatedRoute) {}
+  onAddNewEmployee() {
+    this.router.navigate(['newEmployee'], { relativeTo: this.route });
+  }
+}
