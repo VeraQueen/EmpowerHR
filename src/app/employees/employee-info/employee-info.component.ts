@@ -18,6 +18,9 @@ export class EmployeeInfoComponent {
     contractType: 'temp',
     contractValidity: '3 mths',
     startDate: new Date(2024, 5, 10),
+    numVacationDays: 0,
+    numDaysOff: 0,
+    numPaidLeaveDays: 0,
   };
 
   employeeProfilePicUrl = this.employee.employeeProfilePicUrl;
@@ -29,4 +32,7 @@ export class EmployeeInfoComponent {
   contractType = this.employee.contractType;
   contractValidity = this.employee.contractValidity;
   startDate = this.employee.startDate;
+  numVacationDays = this.employee.numVacationDays;
+  numDaysOff = this.employee.numDaysOff;
+  numPaidLeaveDays = this.employee.numPaidLeaveDays;
 }
