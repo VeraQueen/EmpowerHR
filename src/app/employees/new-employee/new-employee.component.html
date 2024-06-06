@@ -1,1 +1,178 @@
-<p>new-employee works!</p>
+<div class="mx-auto max-w-full">
+  <!-- NEW EMPLOYEE FORM -->
+  <form
+    class="mx-auto w-full max-w-md px-2 flex flex-col gap-2"
+    [formGroup]="newEmployeeForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <!-- FIRST NAME -->
+    <label class="text-emerald-950 text-sm" for="firstName">First name:</label>
+    <input
+      formControlName="firstName"
+      class="text-center text-emerald-950 bg-gray-100 py-2 rounded-md focus:outline focus:outline-2 focus:outline-emerald-950"
+      id="firstName"
+      type="text"
+      placeholder="John"
+      aria-label="First name input"
+    />
+    <app-required-message
+      [control]="newEmployeeForm.get('firstName')"
+    ></app-required-message>
+
+    <!-- LAST NAME -->
+    <label class="text-emerald-950 text-sm" for="lastName">Last name:</label>
+    <input
+      formControlName="lastName"
+      class="text-center text-emerald-950 bg-gray-100 py-2 rounded-md focus:outline focus:outline-2 focus:outline-emerald-950"
+      id="lastName"
+      type="text"
+      placeholder="McClane"
+      aria-label="Last name input"
+    />
+    <app-required-message
+      [control]="newEmployeeForm.get('lastName')"
+    ></app-required-message>
+
+    <!-- GENDER -->
+    <div class="flex items-center gap-6">
+      <label class="text-emerald-950 text-sm" for="gender"> Gender:</label>
+      <select
+        formControlName="gender"
+        class="text-center text-emerald-950 bg-gray-100 px-4 py-2 rounded-md focus:outline focus:outline-2 focus:outline-emerald-950"
+        id="gender"
+        aria-label="
+        Gender select"
+      >
+        <option value="" selected disabled>Select a gender</option>
+        <option *ngFor="let gender of genders" [value]="gender">
+          {{ gender }}
+        </option>
+      </select>
+      <app-required-message
+        [control]="newEmployeeForm.get('gender')"
+      ></app-required-message>
+    </div>
+
+    <!-- BIRTH YEAR -->
+    <div class="flex items-center gap-6">
+      <label class="text-emerald-950 text-sm" for="birthYear">
+        Birth year:</label
+      >
+      <select
+        formControlName="birthYear"
+        class="text-center text-emerald-950 bg-gray-100 px-4 py-2 rounded-md focus:outline focus:outline-2 focus:outline-emerald-950"
+        id="birthYear"
+        aria-label="
+        Birth year select"
+      >
+        <option value="" selected disabled>Select a year</option>
+        <option *ngFor="let year of birthYears" [value]="year">
+          {{ year }}
+        </option>
+      </select>
+      <app-required-message
+        [control]="newEmployeeForm.get('birthYear')"
+      ></app-required-message>
+    </div>
+
+    <!-- DEPARTMENT -->
+    <div class="flex items-center gap-6">
+      <label class="text-emerald-950 text-sm" for="department">
+        Department:</label
+      >
+      <select
+        formControlName="department"
+        class="text-center text-emerald-950 bg-gray-100 px-4 py-2 rounded-md focus:outline focus:outline-2 focus:outline-emerald-950"
+        id="department"
+        aria-label="
+      Department select"
+      >
+        <option value="" selected disabled>Select a department</option>
+        <option *ngFor="let department of departments" [value]="department">
+          {{ department }}
+        </option>
+      </select>
+      <app-required-message
+        [control]="newEmployeeForm.get('department')"
+      ></app-required-message>
+    </div>
+
+    <!-- CONTRACT TYPE -->
+    <div class="flex items-center gap-6">
+      <label class="text-emerald-950 text-sm" for="contractType">
+        Contract type:</label
+      >
+      <select
+        formControlName="contractType"
+        class="text-center text-emerald-950 bg-gray-100 px-4 py-2 rounded-md focus:outline focus:outline-2 focus:outline-emerald-950"
+        id="contractType"
+        aria-label="
+        Contract type select"
+      >
+        <option value="" selected disabled>Select a type</option>
+        <option *ngFor="let type of contractTypes" [value]="type">
+          {{ type }}
+        </option>
+      </select>
+      <app-required-message
+        [control]="newEmployeeForm.get('contractType')"
+      ></app-required-message>
+    </div>
+
+    <!-- CONTRACT VALIDITY -->
+    <div class="flex items-center gap-6">
+      <label
+        class="text-emerald-950 text-sm"
+        [ngClass]="{
+          'text-gray-500': newEmployeeForm.get('contractValidity')?.disabled
+        }"
+        for="contractValidity"
+      >
+        Contract validity (in months):</label
+      >
+      <select
+        formControlName="contractValidity"
+        class="text-center text-emerald-950 bg-gray-100 px-4 py-2 rounded-md focus:outline focus:outline-2 focus:outline-emerald-950"
+        id="contractValidity"
+        aria-label="
+        Contract validity select"
+      >
+        <option value="" selected disabled>Select a number</option>
+        <option *ngFor="let numMonths of validityMonths" [value]="numMonths">
+          {{ numMonths }}
+        </option>
+      </select>
+      <app-required-message
+        [control]="newEmployeeForm.get('contractValidity')"
+      ></app-required-message>
+    </div>
+
+    <!-- START DATE -->
+    <div class="flex items-center gap-6">
+      <label class="text-emerald-950 text-sm" for="startDate"
+        >Start date:</label
+      >
+      <input
+        id="startDate"
+        type="date"
+        formControlName="startDate"
+        class="text-center text-emerald-950 bg-gray-100 px-4 py-2 rounded-md focus:outline focus:outline-2 focus:outline-emerald-950"
+      />
+      <app-required-message
+        [control]="newEmployeeForm.get('startDate')"
+      ></app-required-message>
+    </div>
+
+    <!-- SUBMIT BUTTON -->
+    <div class="place-content-center flex gap-2 justify-center items-center">
+      <button
+        type="submit"
+        disabled
+        #saveButton
+        class="w-fit bg-gray-500 hover:bg-gray-700 text-md text-white py-1 px-2 rounded-md disabled:bg-gray-400"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>
