@@ -8,7 +8,7 @@ import { AbstractControl } from '@angular/forms';
   imports: [NgIf],
   template: `<span
     *ngIf="control && control.invalid && control.touched"
-    class="text-red-700"
+    class="text-red-700 text-xs"
     >{{ message }}</span
   >`,
 })
