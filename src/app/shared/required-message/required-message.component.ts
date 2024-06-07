@@ -14,5 +14,5 @@ import { AbstractControl } from '@angular/forms';
 })
 export class RequiredMessageComponent {
   @Input() control!: AbstractControl<any, any> | null | undefined;
-  @Input() message: string = 'This field is required!';
+  @Input() message: string = 'Required!';
 }
