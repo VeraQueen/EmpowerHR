@@ -115,6 +115,7 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
   onSubmit() {
     const employeeForm: Employee = this.newEmployeeForm.value;
     this.firestoreService.saveEmployee(employeeForm);
+    this.newEmployeeForm.reset();
   }
 
   // clean up subscriptions
