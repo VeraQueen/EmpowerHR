@@ -1,47 +1,63 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../employee.service';
+import { Employee } from '../new-employee/employee.model';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-employee-info',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './employee-info.component.html',
   styleUrl: './employee-info.component.css',
 })
 export class EmployeeInfoComponent implements OnInit {
-  employee = {
-    employeeProfilePicUrl: undefined,
-    firstName: 'Alan',
-    lastName: 'Brick',
-    gender: 'male',
-    birthYear: 1975,
-    department: 'administration',
-    contractType: 'temp',
-    contractValidity: '3 mths',
-    startDate: new Date(2024, 5, 10),
-    numVacationDays: 0,
-    numDaysOff: 0,
-    numPaidLeaveDays: 0,
-  };
+  employee!: Employee;
 
-  employeeProfilePicUrl = this.employee.employeeProfilePicUrl;
-  firstName = this.employee.firstName;
-  lastName = this.employee.lastName;
-  gender = this.employee.gender;
-  birthYear = this.employee.birthYear;
-  department = this.employee.department;
-  contractType = this.employee.contractType;
-  contractValidity = this.employee.contractValidity;
-  startDate = this.employee.startDate;
-  numVacationDays = this.employee.numVacationDays;
-  numDaysOff = this.employee.numDaysOff;
-  numPaidLeaveDays = this.employee.numPaidLeaveDays;
+  employeeProfilePicUrl!: string;
+  firstName!: string;
+  lastName!: string;
+  gender!: string;
+  birthYear!: string;
+  department!: string;
+  contractType!: string;
+  contractValidity!: string | undefined;
+  startDate!: string;
+  numVacationDays!: string | undefined;
+  numDaysOff!: string | undefined;
+  numPaidLeaveDays!: string | undefined;
 
   constructor(private employeeService: EmployeeService) {}
 
   ngOnInit() {
-    this.employeeService.sendEmployeeInfoData.subscribe((data) => {
-      console.log(data);
+    this.employeeService.sendEmployeeInfoData.subscribe((employee) => {
+      console.log(employee);
+      this.employee = employee;
+
+      const {
+        firstName,
+        lastName,
+        gender,
+        birthYear,
+        department,
+        contractType,
+        contractValidity,
+        startDate,
+        numVacationDays,
+        numDaysOff,
+        numPaidLeaveDays,
+      } = employee;
+
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.gender = gender;
+      this.birthYear = birthYear;
+      this.department = department;
+      this.contractType = contractType;
+      this.contractValidity = contractValidity;
+      this.startDate = startDate;
+      this.numVacationDays = numVacationDays;
+      this.numDaysOff = numDaysOff;
+      this.numPaidLeaveDays = numPaidLeaveDays;
     });
   }
 }

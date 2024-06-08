@@ -98,7 +98,7 @@
         {{ contractType }}
       </td>
     </tr>
-    <tr>
+    <tr *ngIf="contractValidity">
       <th
         class="px-4 py-2 text-start text-sm font-medium text-gray-500 uppercase border border-slate-300"
       >
@@ -131,7 +131,7 @@
       <td
         class="px-4 py-2 text-md font-medium text-gray-800 border border-slate-300"
       >
-        {{ numVacationDays }}
+        {{ numVacationDays ? numVacationDays : "-" }}
       </td>
     </tr>
     <tr>
@@ -143,7 +143,7 @@
       <td
         class="px-4 py-2 text-md font-medium text-gray-800 border border-slate-300"
       >
-        {{ numDaysOff }}
+        {{ numDaysOff ? numDaysOff : "-" }}
       </td>
     </tr>
     <tr>
@@ -155,7 +155,7 @@
       <td
         class="px-4 py-2 text-md font-medium text-gray-800 border border-slate-300"
       >
-        {{ numPaidLeaveDays }}
+        {{ numPaidLeaveDays ? numPaidLeaveDays : "-" }}
       </td>
     </tr>
   </table>
