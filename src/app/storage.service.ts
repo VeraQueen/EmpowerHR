@@ -10,7 +10,10 @@ export class StorageService {
   // uploading an employee profile photo
   uploadProfilePicture(profilePicFile: File, employeeUsername: string) {
     // defining a storage path
-    const profileImageRef = ref(this.storage, employeeUsername);
+    const profileImageRef = ref(
+      this.storage,
+      `profilePictures/${employeeUsername}`
+    );
 
     // uploading to storage
     uploadBytes(profileImageRef, profilePicFile);

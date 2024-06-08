@@ -42,6 +42,8 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
   @ViewChild('saveButton') saveButton!: ElementRef<HTMLButtonElement>;
   contractTypeSubscription!: Subscription | undefined;
   formStatusChangeSubscription!: Subscription | undefined;
+  employeeUsername!: string;
+  profilePic!: File;
   genders: string[] = [];
   birthYears: number[] = [];
   contractTypes: string[] = [];
@@ -113,7 +115,7 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
       });
   }
 
-  // submitting the form values
+  // submitting the form values and a profile picture
   onSubmit() {
     // defining form value constant
     const employeeForm: Employee = this.newEmployeeForm.value;
@@ -123,10 +125,22 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
       employeeForm.firstName[0].toLowerCase() +
       employeeForm.lastName.toLowerCase() +
       employeeForm.birthYear;
+    this.employeeUsername = employeeUsername;
 
-    // using services to save data to firestore and storage
+    // using a service to save data to firestore
     this.firestoreService.saveEmployee(employeeForm, employeeUsername);
     this.newEmployeeForm.reset();
+
+    // using a service to upload an image to firebase storage
+    this.storageService.uploadProfilePicture(
+      this.profilePic,
+      this.employeeUsername
+    );
+  }
+
+  onImageSelected(e: any) {
+    // defining a file for upload
+    this.profilePic = e.target.files[0];
   }
 
   // clean up subscriptions
