@@ -8,7 +8,6 @@ export class Employee {
     public contractType: string,
     public startDate: string,
     public contractValidity?: string,
-    public profilePhoto?: string,
     public numVacationDays?: string,
     public numDaysOff?: string,
     public numPaidLeaveDays?: string

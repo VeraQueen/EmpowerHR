@@ -22,6 +22,7 @@ import { RequiredMessageComponent } from '../../shared/required-message/required
 import { Subscription } from 'rxjs';
 import { FirestoreService } from '../../firestore.service';
 import { Employee } from './employee.model';
+import { StorageService } from '../../storage.service';
 
 @Component({
   selector: 'app-new-employee',
@@ -49,7 +50,8 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
 
   constructor(
     private formService: FormService,
-    private firestoreService: FirestoreService
+    private firestoreService: FirestoreService,
+    private storageService: StorageService
   ) {}
 
   ngOnInit() {
@@ -113,8 +115,17 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
 
   // submitting the form values
   onSubmit() {
+    // defining form value constant
     const employeeForm: Employee = this.newEmployeeForm.value;
-    this.firestoreService.saveEmployee(employeeForm);
+
+    // defining firestore document ID
+    const employeeUsername =
+      employeeForm.firstName[0].toLowerCase() +
+      employeeForm.lastName.toLowerCase() +
+      employeeForm.birthYear;
+
+    // using services to save data to firestore and storage
+    this.firestoreService.saveEmployee(employeeForm, employeeUsername);
     this.newEmployeeForm.reset();
   }
 

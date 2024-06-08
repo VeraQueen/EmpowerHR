@@ -22,13 +22,7 @@ export class FirestoreService {
   constructor(private firestore: Firestore) {}
 
   // SAVING EMPLOYEE DATA
-  saveEmployee(employeeForm: Employee) {
-    // defining firestore document ID
-    const employeeUsername =
-      employeeForm.firstName[0].toLowerCase() +
-      employeeForm.lastName.toLowerCase() +
-      employeeForm.birthYear;
-
+  saveEmployee(employeeForm: Employee, employeeUsername: string) {
     // defining firestore document path
     const docRef = doc(this.firestore, 'employees', employeeUsername);
 
@@ -41,7 +35,6 @@ export class FirestoreService {
     const contractType = employeeForm.contractType;
     const startDate = employeeForm.startDate;
     const contractValidity = employeeForm.contractValidity;
-    const profilePhoto = employeeForm.profilePhoto;
     const numVacationDays = employeeForm.numVacationDays;
     const numDaysOff = employeeForm.numDaysOff;
     const numPaidLeaveDays = employeeForm.numPaidLeaveDays;
@@ -61,7 +54,6 @@ export class FirestoreService {
     if (contractType !== undefined) employeeData.contractType = contractType;
     if (contractValidity !== undefined)
       employeeData.contractValidity = contractValidity;
-    if (profilePhoto !== undefined) employeeData.profilePhoto = profilePhoto;
     if (numVacationDays !== undefined)
       employeeData.numVacationDays = numVacationDays;
     if (numDaysOff !== undefined) employeeData.numDaysOff = numDaysOff;
