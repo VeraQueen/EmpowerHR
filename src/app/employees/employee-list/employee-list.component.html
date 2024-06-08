@@ -2,12 +2,12 @@
   <h4 class="pb-1 font-semibold">Lista zaposlenika</h4>
   <ol class="list-inside list-decimal flex flex-col">
     <button
-      *ngFor="let employee of employees"
-      (click)="onSelectEmployee()"
+      *ngFor="let employee of employees; let i = index"
+      (click)="onSelectEmployee(i)"
       class="rounded-sm hover:bg-emerald-200 active:bg-emerald-300 p-1"
     >
       <li class="text-start pl-2">
-        {{ employee }}
+        {{ employee.firstName }} {{ employee.lastName }}
       </li>
     </button>
   </ol>

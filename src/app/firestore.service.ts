@@ -64,15 +64,19 @@ export class FirestoreService {
     setDoc(docRef, employeeData);
   }
 
-  getEmployees() {}
-  // savePlaylist(playlistId: string, user: User) {
-  //   const docRef = doc(this.firestore, user.id, playlistId);
-  //   setDoc(docRef, { playlistId: playlistId });
-  // }
+  getEmployees() {
+    const colRef = collection(this.firestore, 'employees');
+    return collectionData(colRef);
+  }
 
   // getPlaylists(user: User) {
   //   const colRef = collection(this.firestore, user.id);
   //   return collectionData(colRef);
+  // }
+
+  // getWatchedVideoIds(playlistId: string, user: User) {
+  //   const docRef = doc(this.firestore, user.id, playlistId);
+  //   return getDoc(docRef);
   // }
 
   // async deletePlaylist(playlistId: string, user: User) {
@@ -121,11 +125,6 @@ export class FirestoreService {
   // addWatchedVideoIds(playlistId: string, videoId: string, user: User) {
   //   const docRef = doc(this.firestore, user.id, playlistId);
   //   updateDoc(docRef, { watchedVideoIds: arrayUnion(videoId) });
-  // }
-
-  // getWatchedVideoIds(playlistId: string, user: User) {
-  //   const docRef = doc(this.firestore, user.id, playlistId);
-  //   return getDoc(docRef);
   // }
 
   // removeFromWatched(videoId: string, playlistId: string, user: User) {

@@ -1,6 +1,8 @@
 import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FirestoreService } from '../../firestore.service';
+import { Employee } from '../new-employee/employee.model';
 
 @Component({
   selector: 'app-employee-list',
@@ -9,12 +11,24 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.css',
 })
-export class EmployeeListComponent {
-  employees: String[] = ['James Deen', 'Johnny Depp', 'Mark Cain'];
+export class EmployeeListComponent implements OnInit {
+  employees: Employee[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private firestoreService: FirestoreService
+  ) {}
 
-  onSelectEmployee() {
+  ngOnInit() {
+    this.firestoreService.getEmployees().subscribe((employees: any) => {
+      this.employees = employees;
+    });
+  }
+
+  onSelectEmployee(index: number) {
     this.router.navigate(['employeeInfo'], { relativeTo: this.route });
   }
+
+  onGetEmployees() {}
 }
