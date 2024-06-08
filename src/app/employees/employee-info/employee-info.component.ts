@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { EmployeeService } from '../../employee.service';
 
 @Component({
   selector: 'app-employee-info',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
   templateUrl: './employee-info.component.html',
   styleUrl: './employee-info.component.css',
 })
-export class EmployeeInfoComponent {
+export class EmployeeInfoComponent implements OnInit {
   employee = {
     employeeProfilePicUrl: undefined,
     firstName: 'Alan',
@@ -35,4 +36,12 @@ export class EmployeeInfoComponent {
   numVacationDays = this.employee.numVacationDays;
   numDaysOff = this.employee.numDaysOff;
   numPaidLeaveDays = this.employee.numPaidLeaveDays;
+
+  constructor(private employeeService: EmployeeService) {}
+
+  ngOnInit() {
+    this.employeeService.sendEmployeeInfoData.subscribe((data) => {
+      console.log(data);
+    });
+  }
 }

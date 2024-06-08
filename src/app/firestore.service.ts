@@ -64,20 +64,14 @@ export class FirestoreService {
     setDoc(docRef, employeeData);
   }
 
+  // GETTING EMPLOYEE DATA
   getEmployees() {
+    // defining firestore collection path
     const colRef = collection(this.firestore, 'employees');
+
+    // returning data from firestore, subscribe in the list component
     return collectionData(colRef);
   }
-
-  // getPlaylists(user: User) {
-  //   const colRef = collection(this.firestore, user.id);
-  //   return collectionData(colRef);
-  // }
-
-  // getWatchedVideoIds(playlistId: string, user: User) {
-  //   const docRef = doc(this.firestore, user.id, playlistId);
-  //   return getDoc(docRef);
-  // }
 
   // async deletePlaylist(playlistId: string, user: User) {
   //   const playlistRef = doc(this.firestore, user.id, playlistId);

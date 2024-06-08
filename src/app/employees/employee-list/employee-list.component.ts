@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FirestoreService } from '../../firestore.service';
 import { Employee } from '../new-employee/employee.model';
+import { EmployeeService } from '../../employee.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -17,7 +18,8 @@ export class EmployeeListComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private firestoreService: FirestoreService
+    private firestoreService: FirestoreService,
+    private employeeService: EmployeeService
   ) {}
 
   ngOnInit() {
@@ -26,7 +28,9 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 
-  onSelectEmployee(index: number) {
+  onSelectEmployee(i: number) {
+    const employeeSelected = this.employees[i];
+    this.employeeService.sendEmployeeInfoData.next(employeeSelected);
     this.router.navigate(['employeeInfo'], { relativeTo: this.route });
   }
 
