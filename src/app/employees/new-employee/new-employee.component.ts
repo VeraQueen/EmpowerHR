@@ -20,6 +20,8 @@ import { RequiredMessageComponent } from '../../shared/required-message/required
 
 // third-party imports
 import { Subscription } from 'rxjs';
+import { FirestoreService } from '../../firestore.service';
+import { Employee } from './employee.model';
 
 @Component({
   selector: 'app-new-employee',
@@ -45,7 +47,10 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
   validityMonths: number[] = [];
   departments: string[] = [];
 
-  constructor(private formService: FormService) {}
+  constructor(
+    private formService: FormService,
+    private firestoreService: FirestoreService
+  ) {}
 
   ngOnInit() {
     this.newEmployeeForm = new FormGroup({
@@ -108,7 +113,8 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
 
   // submitting the form values
   onSubmit() {
-    console.log(this.newEmployeeForm.value);
+    const employeeForm: Employee = this.newEmployeeForm.value;
+    this.firestoreService.saveEmployee(employeeForm);
   }
 
   // clean up subscriptions
