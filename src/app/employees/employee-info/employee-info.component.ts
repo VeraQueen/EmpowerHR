@@ -13,7 +13,7 @@ import { NgIf } from '@angular/common';
 export class EmployeeInfoComponent implements OnInit {
   employee!: Employee;
 
-  employeeProfilePicUrl!: string;
+  profilePhotoUrl!: string;
   firstName!: string;
   lastName!: string;
   gender!: string;
@@ -30,7 +30,6 @@ export class EmployeeInfoComponent implements OnInit {
 
   ngOnInit() {
     this.employeeService.sendEmployeeInfoData.subscribe((employee) => {
-      console.log(employee);
       this.employee = employee;
 
       const {
@@ -42,11 +41,13 @@ export class EmployeeInfoComponent implements OnInit {
         contractType,
         contractValidity,
         startDate,
+        profilePhotoUrl,
         numVacationDays,
         numDaysOff,
         numPaidLeaveDays,
       } = employee;
 
+      this.profilePhotoUrl = profilePhotoUrl;
       this.firstName = firstName;
       this.lastName = lastName;
       this.gender = gender;

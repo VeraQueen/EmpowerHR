@@ -116,7 +116,7 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
   }
 
   // submitting the form values and a profile picture
-  onSubmit() {
+  async onSubmit() {
     // defining form value constant
     const employeeForm: Employee = this.newEmployeeForm.value;
 
@@ -127,15 +127,24 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
       employeeForm.birthYear;
     this.employeeUsername = employeeUsername;
 
-    // using a service to save data to firestore
-    this.firestoreService.saveEmployee(employeeForm, employeeUsername);
-    this.newEmployeeForm.reset();
-
     // using a service to upload an image to firebase storage
-    this.storageService.uploadProfilePicture(
+    await this.storageService.uploadProfilePicture(
       this.profilePic,
       this.employeeUsername
     );
+
+    // using a service to get the image link
+    const photoUrl = await this.storageService.loadProfilePicture(
+      employeeUsername
+    );
+
+    // using a service to save data to firestore
+    this.firestoreService.saveEmployee(
+      employeeForm,
+      employeeUsername,
+      photoUrl
+    );
+    this.newEmployeeForm.reset();
   }
 
   onImageSelected(e: any) {

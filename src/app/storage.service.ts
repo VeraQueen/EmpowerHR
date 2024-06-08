@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Storage, ref, uploadBytes } from '@angular/fire/storage';
+import {
+  Storage,
+  getDownloadURL,
+  ref,
+  uploadBytes,
+} from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +12,7 @@ import { Storage, ref, uploadBytes } from '@angular/fire/storage';
 export class StorageService {
   constructor(private storage: Storage) {}
 
-  // uploading an employee profile photo
+  // UPLOADING AN EMPLOYEE PROFILE PHOTO
   uploadProfilePicture(profilePicFile: File, employeeUsername: string) {
     // defining a storage path
     const profileImageRef = ref(
@@ -16,6 +21,17 @@ export class StorageService {
     );
 
     // uploading to storage
-    uploadBytes(profileImageRef, profilePicFile);
+    return uploadBytes(profileImageRef, profilePicFile);
+  }
+
+  // DOWNLOADING AN EMPLOYEE PROFILE PHOTO
+  loadProfilePicture(employeeUsername: string) {
+    // defining an image path
+    const profileImageRef = ref(
+      this.storage,
+      `profilePictures/${employeeUsername}`
+    );
+    // returning image and subscribing in employee-info
+    return getDownloadURL(profileImageRef);
   }
 }
