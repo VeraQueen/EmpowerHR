@@ -72,7 +72,6 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
       numVacationDays: new FormControl(null),
       numDaysOff: new FormControl(null),
       numPaidLeaveDays: new FormControl(null),
-      image: new FormControl(null),
     });
 
     // getting form select data
@@ -128,16 +127,29 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
       employeeForm.birthYear;
     this.employeeUsername = employeeUsername;
 
-    // using a service to upload an image to firebase storage
-    await this.storageService.uploadProfilePicture(
-      this.profilePic,
-      this.employeeUsername
-    );
+    // Using a boolean to track uploading success
+    let uploadingSuccess = false;
+    let photoUrl: string = '';
 
-    // using a service to get the image link
-    const photoUrl = await this.storageService.loadProfilePicture(
-      employeeUsername
-    );
+    // using a service to upload an image to firebase storage
+    if (this.profilePic !== undefined) {
+      await this.storageService.uploadProfilePicture(
+        this.profilePic,
+        this.employeeUsername
+      );
+      uploadingSuccess = true;
+    } else {
+      uploadingSuccess = false;
+    }
+
+    // using a service to get the image link if uploadingSuccess true
+    if (uploadingSuccess) {
+      photoUrl = await this.storageService.loadProfilePicture(
+        this.employeeUsername
+      );
+    } else {
+      photoUrl = '';
+    }
 
     // using a service to save data to firestore
     this.firestoreService.saveEmployee(

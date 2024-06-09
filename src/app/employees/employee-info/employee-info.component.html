@@ -4,11 +4,11 @@
     <div class="w-44 h-44">
       <img
         [src]="
-          profilePhotoUrl !== undefined
-            ? profilePhotoUrl
-            : 'assets/employee-placeholder/uifaces-cartoon-image-male.jpg'
+          profilePhotoUrl === undefined || profilePhotoUrl === ''
+            ? 'assets/employee-placeholder/uifaces-cartoon-image-male.jpg'
+            : profilePhotoUrl
         "
-        alt="Your profile picture"
+        alt="Employee profile picture"
         class="w-full h-full rounded-sm object-cover object-center"
       />
     </div>
