@@ -43,7 +43,7 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
   contractTypeSubscription!: Subscription | undefined;
   formStatusChangeSubscription!: Subscription | undefined;
   employeeUsername!: string;
-  profilePic!: File;
+  profilePic!: File | undefined;
   genders: string[] = [];
   birthYears: number[] = [];
   contractTypes: string[] = [];
@@ -157,7 +157,10 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
       employeeUsername,
       photoUrl
     );
+
+    // resetting values
     this.newEmployeeForm.reset();
+    this.profilePic = undefined;
   }
 
   onImageSelected(e: any) {
