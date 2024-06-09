@@ -69,9 +69,10 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
         Validators.required
       ),
       startDate: new FormControl(null, Validators.required),
-      // numVacationDays: new FormControl(null, Validators.required),
-      // numDaysOff: new FormControl(null, Validators.required),
-      // numPaidLeaveDays: new FormControl(null, Validators.required),
+      numVacationDays: new FormControl(null),
+      numDaysOff: new FormControl(null),
+      numPaidLeaveDays: new FormControl(null),
+      image: new FormControl(null),
     });
 
     // getting form select data

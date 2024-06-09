@@ -171,8 +171,57 @@
       ></app-required-message>
     </div>
 
+    <!-- NUMBER OF VACATION DAYS -->
+    <div class="flex items-center gap-6">
+      <label class="text-emerald-950 text-sm mb-2" for="numVacationDays"
+        >Number of vacation days:</label
+      >
+      <input
+        formControlName="numVacationDays"
+        class="w-fit text-center text-emerald-950 bg-gray-100 py-2 rounded-md focus:outline focus:outline-2 focus:outline-emerald-950"
+        id="numVacationDays"
+        type="number"
+        placeholder="0"
+        aria-label="Number of vacation days input"
+      />
+    </div>
+
+    <!-- NUMBER OF PAID LEAVE DAYS -->
+    <div class="flex items-center gap-6">
+      <label class="text-emerald-950 text-sm mb-2" for="numPaidLeaveDays"
+        >Number of paid leave days:</label
+      >
+      <input
+        formControlName="numPaidLeaveDays"
+        class="w-fit text-center text-emerald-950 bg-gray-100 py-2 rounded-md focus:outline focus:outline-2 focus:outline-emerald-950"
+        id="numPaidLeaveDays"
+        type="number"
+        placeholder="0"
+        aria-label="Number of paid leave days input"
+      />
+    </div>
+
+    <!-- NUMBER OF DAYS OFF -->
+    <div class="flex items-center gap-6">
+      <label class="text-emerald-950 text-sm mb-2" for="numDaysOff"
+        >Number of days off:</label
+      >
+      <input
+        formControlName="numDaysOff"
+        class="w-fit text-center text-emerald-950 bg-gray-100 py-2 rounded-md focus:outline focus:outline-2 focus:outline-emerald-950"
+        id="numDaysOff"
+        type="number"
+        placeholder="0"
+        aria-label="Number of days off input"
+      />
+    </div>
+
     <!-- UPLOAD A PROFILE PHOTO -->
-    <div class="flex items-center justify-center">
+    <div class="flex items-center gap-6">
+      <label class="text-emerald-950 text-sm mb-2" for="image"
+        >Profile photo:</label
+      >
+
       <button
         type="button"
         aria-label="Add new profile picture"
@@ -181,8 +230,10 @@
       >
         <input
           type="file"
+          id="image"
           class="hidden"
           (change)="onImageSelected($event)"
+          formControlName="image"
           #upload
         />
         Add profile photo
