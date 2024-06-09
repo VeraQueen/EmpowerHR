@@ -1,3 +1,4 @@
+// core angular imports
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -6,10 +7,12 @@ import { Injectable } from '@angular/core';
 export class FormService {
   constructor() {}
 
+  // getting gender form data
   getGenders() {
     return ['male', 'female', 'other'];
   }
 
+  // computing and getting birth year form data
   getBirthYears(): number[] {
     const currentYear = new Date().getFullYear();
     const birthYears = [];
@@ -19,6 +22,7 @@ export class FormService {
     return birthYears;
   }
 
+  // computing and getting months form data
   getValidityMonths(): number[] {
     const validityMonths = [];
     for (let i = 1; i <= 12; i++) {
@@ -27,6 +31,7 @@ export class FormService {
     return validityMonths;
   }
 
+  // getting departments form data
   getDepartments(): string[] {
     return [
       'Human Resources',
@@ -38,6 +43,7 @@ export class FormService {
     ];
   }
 
+  // getting contract types form data
   getContractTypes(): string[] {
     return ['Permanent', 'Fixed-term', 'Temporary'];
   }

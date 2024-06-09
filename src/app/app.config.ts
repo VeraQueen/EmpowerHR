@@ -1,10 +1,14 @@
+// core angular imports
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { routes } from './app.routes';
+// firebase imports
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
+
+// other application-specific imports
+import { routes } from './app.routes';
 import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {

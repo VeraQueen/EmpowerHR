@@ -14,7 +14,7 @@ import {
   Validators,
 } from '@angular/forms';
 
-// other application imports
+// other application-specific imports
 import { FormService } from './form.service';
 import { RequiredMessageComponent } from '../../shared/required-message/required-message.component';
 
@@ -56,6 +56,7 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
     private storageService: StorageService
   ) {}
 
+  // USING NGONINIT TO INITIALIZE THE FORM, FORM DATA AND SUBSCRIPTIONS
   ngOnInit() {
     this.newEmployeeForm = new FormGroup({
       firstName: new FormControl(null, Validators.required),
@@ -86,7 +87,7 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
     this.onFormStatusChange();
   }
 
-  // dealing with changes in contract type control to enable/disable contract validity control
+  // DEALING WITH CHANGES IN CONTRACT TYPE CONTROL TO ENABLE/DISABLE CONTRACT VALIDITY CONTROL
   private onContractTypeChange(): void {
     const contractTypeControl = this.newEmployeeForm.get('contractType');
     const contractValidityControl =
@@ -103,7 +104,7 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
     );
   }
 
-  // dealing with status changes of the form to allow button enabling
+  // DEALING WITH STATUS CHANGES OF THE FORM TO ALLOW BUTTON ENABLING
   private onFormStatusChange(): void {
     this.formStatusChangeSubscription =
       this.newEmployeeForm.statusChanges.subscribe((value) => {
@@ -115,7 +116,7 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
       });
   }
 
-  // submitting the form values and a profile picture
+  // SUBMITTING THE FORM VALUES AND A PROFILE PICTURE
   async onSubmit() {
     // defining form value constant
     const employeeForm: Employee = this.newEmployeeForm.value;
@@ -163,12 +164,13 @@ export class NewEmployeeComponent implements OnInit, OnDestroy {
     this.profilePic = undefined;
   }
 
+  // ON SELECTED IMAGE FILE
   onImageSelected(e: any) {
     // defining a file for upload
     this.profilePic = e.target.files[0];
   }
 
-  // clean up subscriptions
+  // CLEAN UP SUBSCRIPTIONS
   ngOnDestroy() {
     if (this.contractTypeSubscription) {
       this.contractTypeSubscription.unsubscribe();

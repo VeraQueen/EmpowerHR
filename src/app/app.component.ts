@@ -1,5 +1,8 @@
+// core angular imports
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
+// other application-specific imports
 import { HeaderComponent } from './header/header.component';
 
 @Component({

@@ -1,11 +1,10 @@
-import { NgIf } from '@angular/common';
+// core angular imports
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgIf],
+  imports: [],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })

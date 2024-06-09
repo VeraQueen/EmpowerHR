@@ -1,4 +1,7 @@
+// core angular imports
 import { Injectable } from '@angular/core';
+
+// firebase storage imports
 import {
   Storage,
   getDownloadURL,

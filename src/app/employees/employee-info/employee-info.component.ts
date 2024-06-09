@@ -1,7 +1,10 @@
+// core angular imports
 import { Component, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
+
+// other application-specific imports
 import { EmployeeService } from '../../employee.service';
 import { Employee } from '../new-employee/employee.model';
-import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-employee-info',
@@ -28,10 +31,13 @@ export class EmployeeInfoComponent implements OnInit {
 
   constructor(private employeeService: EmployeeService) {}
 
+  // INITIALIZING EMPLOYEE INFORMATION PAGE
   ngOnInit() {
+    // subscribing to subject for an employee
     this.employeeService.sendEmployeeInfoData.subscribe((employee) => {
       this.employee = employee;
 
+      // destucturing employee object
       const {
         firstName,
         lastName,
@@ -47,6 +53,7 @@ export class EmployeeInfoComponent implements OnInit {
         numPaidLeaveDays,
       } = employee;
 
+      // setting values needed for tables
       this.profilePhotoUrl = profilePhotoUrl;
       this.firstName = firstName;
       this.lastName = lastName;

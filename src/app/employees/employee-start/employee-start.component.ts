@@ -1,3 +1,4 @@
+// core angular imports
 import { Component } from '@angular/core';
 
 @Component({
@@ -5,8 +6,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './employee-start.component.html',
-  styleUrl: './employee-start.component.css'
+  styleUrl: './employee-start.component.css',
 })
-export class EmployeeStartComponent {
-
-}
+export class EmployeeStartComponent {}
